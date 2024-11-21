@@ -10,10 +10,7 @@ const app = express()
 
 app.use(express.json())
 app.use(cors({
-    origin: (origin, callback) => {
-        if (!origin) return callback(null, true);
-        callback(null, true);
-    },
+    origin: "https://expense-tracker-ppx3.onrender.com",
     credentials: true
 }))
 

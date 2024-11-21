@@ -70,7 +70,7 @@ exports.signIn = asyncHandler(async (req, res) => {
     const token = genrateToken({ userId: result._id })
     console.log(token);
 
-    res.cookie("auth", token, { maxAge: 864000000, httpOnly: true, secure: process.env.NODE_ENV === "production" })
+    res.cookie("auth", token, { maxAge: 864000000, httpOnly: true, secure: process.env.NODE_ENV === "production", sameSite: "none" })
 
     res.status(200).json({
         message: "Logged in successfully", result: {
@@ -120,7 +120,8 @@ exports.signInWithGoogle = asyncHandler(async (req, res) => {
         res.cookie("auth", token, {
             maxAge: 864000000,
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production"
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "none"
         })
         res.json({
             message: "Logged in successfully", result: {

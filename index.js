@@ -10,7 +10,10 @@ const app = express()
 
 app.use(express.json())
 app.use(cors({
-    origin: "http://localhost:4200",
+    origin: (origin, callback) => {
+        if (!origin) return callback(null, true);
+        callback(null, true);
+    },
     credentials: true
 }))
 

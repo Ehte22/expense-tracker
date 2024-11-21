@@ -70,7 +70,7 @@ exports.signIn = asyncHandler(async (req, res) => {
     const token = genrateToken({ userId: result._id })
     console.log(token);
 
-    res.cookie("auth", token, { maxAge: 864000000, httpOnly: true, secure: process.env.NODE_ENV === "production", sameSite: "none" })
+    res.cookie("auth", token, { maxAge: 864000000, httpOnly: true, secure: true, sameSite: "none" })
 
     res.status(200).json({
         message: "Logged in successfully", result: {
@@ -120,7 +120,7 @@ exports.signInWithGoogle = asyncHandler(async (req, res) => {
         res.cookie("auth", token, {
             maxAge: 864000000,
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
+            secure: true,
             sameSite: "none"
         })
         res.json({
@@ -202,14 +202,3 @@ exports.resetPassword = asyncHandler(async (req, res) => {
     res.clearCookie("resetPassToken")
     res.status(200).json({ message: "Password reset successfully" })
 })
-
-// forgot password with otp ---------------done
-// dynamic pagination -----------------done
-// backend validation --------------done
-// fetch all document or with conditions ------------done
-// login with google --------------------done
-// filter with all expneses (not deleted or deleted) ---------------done
-// pagination for type in expense with search type  --------------done
-// dynamic header
-// error handling with backend
-// password update functionality
